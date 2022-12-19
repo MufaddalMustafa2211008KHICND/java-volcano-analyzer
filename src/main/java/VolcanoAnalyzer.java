@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collector;
@@ -50,6 +52,16 @@ public class VolcanoAnalyzer {
         double total = volcanos.size();
         double causedTsunamis = volcanos.stream().filter(item -> item.getTsu().equals("tsu")).collect(Collectors.toList()).size();
         return causedTsunamis/total *100;
+    }
+
+    public String mostCommonType() {
+        List<String> types = volcanos.stream().map(item -> item.getType()).distinct().collect(Collectors.toList());
+        List<Integer> nums = new ArrayList<>();
+        types.forEach(item -> {
+            nums.add(volcanos.stream().filter(i -> i.getType().equals(item)).collect(Collectors.toList()).size());
+        });
+        Integer max = Collections.max(nums);
+        return types.get(nums.indexOf(max));
     }
 
 }
