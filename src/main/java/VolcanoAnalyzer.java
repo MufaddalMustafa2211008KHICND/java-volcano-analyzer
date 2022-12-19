@@ -78,4 +78,9 @@ public class VolcanoAnalyzer {
         return volcanos.stream().map(item -> item.getType()).distinct().toArray(String[]::new);
     }
 
+    public double percentNorth() {
+        double my = volcanos.stream().filter(item -> item.getLatitude() >= 0 && item.getLatitude() <= 90).collect(Collectors.toList()).size();
+        return my/volcanos.size() * 100;
+    }
+
 }
