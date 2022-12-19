@@ -74,4 +74,8 @@ public class VolcanoAnalyzer {
         return sumOfElevations/total;
     }
 
+    public String[] volcanoTypes() {
+        return volcanos.stream().map(item -> item.getType()).distinct().toArray(String[]::new);
+    }
+
 }
