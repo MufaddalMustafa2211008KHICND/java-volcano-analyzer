@@ -46,4 +46,10 @@ public class VolcanoAnalyzer {
         return volcanos.stream().filter(item -> item.getDEATHS().equals("30000")).toArray(Volcano[]::new)[0];
     }
 
+    public double causedTsunami() {
+        double total = volcanos.size();
+        double causedTsunamis = volcanos.stream().filter(item -> item.getTsu().equals("tsu")).collect(Collectors.toList()).size();
+        return causedTsunamis/total *100;
+    }
+
 }
