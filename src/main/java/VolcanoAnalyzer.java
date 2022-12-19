@@ -64,4 +64,8 @@ public class VolcanoAnalyzer {
         return types.get(nums.indexOf(max));
     }
 
+    public Integer eruptionsByCountry(String country) {
+        return volcanos.stream().filter(item -> item.getCountry().equals(country)).collect(Collectors.toList()).size();
+    }
+
 }
