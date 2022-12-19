@@ -83,4 +83,8 @@ public class VolcanoAnalyzer {
         return my/volcanos.size() * 100;
     }
 
+    public String[] manyFilters() {
+        return volcanos.stream().filter(item -> item.getYear() > 1800 & item.getTsu().notE )
+    }
+
 }
