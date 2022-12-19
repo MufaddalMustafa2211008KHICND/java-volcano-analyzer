@@ -88,4 +88,7 @@ public class VolcanoAnalyzer {
         item.getLatitude() <= 0 && item.getLatitude() >= -90 && item.getVEI() == 5 ).map(i -> i.getName()).toArray(String[]::new);
     }
 
+    public String[] elevatedVolcanoes(int elev) {
+        return volcanos.stream().filter(item -> item.getElevation() >= elev).map(i -> i.getName()).toArray(String[]::new);
+    }
 }
