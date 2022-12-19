@@ -42,6 +42,8 @@ public class VolcanoAnalyzer {
         return volcanos.stream().filter(item -> item.getVEI() >= 6).map(item -> item.getName()).toArray(String[]::new);
     }
 
-    
+    public Volcano mostDeadly() {
+        return volcanos.stream().filter(item -> item.getDEATHS().equals("30000")).toArray(Volcano[]::new)[0];
+    }
 
 }
