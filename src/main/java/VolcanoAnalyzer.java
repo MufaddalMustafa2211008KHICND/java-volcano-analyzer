@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collector;
@@ -45,7 +46,7 @@ public class VolcanoAnalyzer {
     }
 
     public Volcano mostDeadly() {
-        return volcanos.stream().filter(item -> item.getDEATHS().equals("30000")).toArray(Volcano[]::new)[0];
+        return volcanos.stream().max(Comparator.comparing(i -> Integer.parseInt(i.getDEATHS().isEmpty()?"0":i.getDEATHS()))).get();
     }
 
     public double causedTsunami() {
@@ -90,5 +91,9 @@ public class VolcanoAnalyzer {
 
     public String[] elevatedVolcanoes(int elev) {
         return volcanos.stream().filter(item -> item.getElevation() >= elev).map(i -> i.getName()).toArray(String[]::new);
+    }
+
+    public String[] topAgentsOfDeath() {
+        return volcanos.stream().sorted((a, b) -> Integer.compare(Integer.parseInt(a.getDEATHS().isEmpty()?"0":a.getDEATHS()), Integer.parseInt(b.getDEATHS().isEmpty()?"0":b.getDEATHS()))).limit(10).map(i -> i.getAgent()).distinct().toArray(String[]::new);
     }
 }
